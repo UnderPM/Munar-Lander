@@ -27,7 +27,10 @@ public class Rocket : MonoBehaviour
         if (Input.GetKey(KeyCode.W))
         {
             rigidBody.AddRelativeForce(Vector3.up);
-            audioSource.Play();
+            if (!audioSource.isPlaying)
+            {
+                audioSource.Play();
+            }
         }
         if (Input.GetKeyUp(KeyCode.W))
         {
