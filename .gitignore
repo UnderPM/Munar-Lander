@@ -80,3 +80,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+/Munar-Lander/.vs/Munar-Lander/v15/Server/sqlite3
