@@ -11,12 +11,19 @@ public class Rocket : MonoBehaviour
 
     [SerializeField] float thrust = 1000f;
     [SerializeField] float rcs = 200f;
-    
+
+    [SerializeField] TextMesh xSpeed;
+    [SerializeField] TextMesh ySpeed;
+    [SerializeField] TextMesh totalSpeed;
+
     // Start is called before the first frame update
     void Start()
     {
         rigidBody = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
+        xSpeed.text = "";
+        ySpeed.text = "";
+        totalSpeed.text = "";
     }
 
     // Update is called once per frame
@@ -24,6 +31,23 @@ public class Rocket : MonoBehaviour
     {
         Thrust();
         Rotate();
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        switch (collision.gameObject.tag)
+        {
+            case "Friendly":
+                print("You may live... For now");
+                break;
+            case "Finish":
+                print("Yeah, I know, you won.");
+                break;
+
+            default:
+                print("Die mf!");
+                break;
+        }
     }
 
     private void Rotate()
