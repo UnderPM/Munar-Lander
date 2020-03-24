@@ -15,6 +15,7 @@ public class Rocket : MonoBehaviour
     [SerializeField] TextMesh xSpeed;
     [SerializeField] TextMesh ySpeed;
     [SerializeField] TextMesh totalSpeed;
+    [SerializeField] TextMesh headingIndicator;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +25,7 @@ public class Rocket : MonoBehaviour
         xSpeed.text = "";
         ySpeed.text = "";
         totalSpeed.text = "";
+        headingIndicator.text = "";
     }
 
     // Update is called once per frame
@@ -31,6 +33,16 @@ public class Rocket : MonoBehaviour
     {
         Thrust();
         Rotate();
+        StatsUpdate();
+    }
+
+    private void StatsUpdate()
+    {
+        Vector3 speed = rigidBody.GetRelativePointVelocity(rigidBody.centerOfMass);
+        xSpeed.text = Math.Round(speed.x, 2).ToString();
+        ySpeed.text = Math.Round(speed.y, 2).ToString();
+        totalSpeed.text = Math.Round(speed.magnitude, 2).ToString();
+        headingIndicator.text = Math.Round(360-gameObject.transform.rotation.eulerAngles.z, 2).ToString() + "°";
     }
 
     private void OnCollisionEnter(Collision collision)
