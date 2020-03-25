@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class Rocket : MonoBehaviour
 {
-
+    // todo fix lightning bug
     Rigidbody rigidBody;
     AudioSource audioSource;
 
@@ -54,10 +53,12 @@ public class Rocket : MonoBehaviour
                 break;
             case "Finish":
                 print("Yeah, I know, you won.");
+                SceneManager.LoadScene(1);
                 break;
 
             default:
                 print("Die mf!");
+                SceneManager.LoadScene(0);
                 break;
         }
     }

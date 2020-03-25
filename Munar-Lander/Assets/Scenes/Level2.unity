@@ -121,6 +121,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!102 &302289466 stripped
+TextMesh:
+  m_CorrespondingSourceObject: {fileID: 2377628646423298008, guid: 1087572c0fb2e5b439c9c1ef99de2dd2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1972328728}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &352134007
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -333,6 +339,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2db06615fbb81a44fa228be45d10ad6c, type: 3}
+--- !u!102 &763785608 stripped
+TextMesh:
+  m_CorrespondingSourceObject: {fileID: 6884692944416087770, guid: 1087572c0fb2e5b439c9c1ef99de2dd2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1972328728}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1082446666
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -340,6 +352,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4660730902542688727, guid: 034c8d3a12a136f49b885b4de1ad5b19,
+        type: 3}
+      propertyPath: xSpeed
+      value: 
+      objectReference: {fileID: 1951119625}
+    - target: {fileID: -4660730902542688727, guid: 034c8d3a12a136f49b885b4de1ad5b19,
+        type: 3}
+      propertyPath: ySpeed
+      value: 
+      objectReference: {fileID: 302289466}
+    - target: {fileID: -4660730902542688727, guid: 034c8d3a12a136f49b885b4de1ad5b19,
+        type: 3}
+      propertyPath: totalSpeed
+      value: 
+      objectReference: {fileID: 763785608}
+    - target: {fileID: -4660730902542688727, guid: 034c8d3a12a136f49b885b4de1ad5b19,
+        type: 3}
+      propertyPath: headingIndicator
+      value: 
+      objectReference: {fileID: 1122981983}
     - target: {fileID: 1456450351310565585, guid: 034c8d3a12a136f49b885b4de1ad5b19,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -400,8 +432,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rocket
       objectReference: {fileID: 0}
+    - target: {fileID: 2796395062451733320, guid: 034c8d3a12a136f49b885b4de1ad5b19,
+        type: 3}
+      propertyPath: gravityScale
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 034c8d3a12a136f49b885b4de1ad5b19, type: 3}
+--- !u!102 &1122981983 stripped
+TextMesh:
+  m_CorrespondingSourceObject: {fileID: 2465451740680401061, guid: 1087572c0fb2e5b439c9c1ef99de2dd2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1972328728}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1467118588
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -885,6 +928,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c17c0fe96613294fb2ae889cb6238bb, type: 3}
+--- !u!102 &1951119625 stripped
+TextMesh:
+  m_CorrespondingSourceObject: {fileID: 2303876962406214406, guid: 1087572c0fb2e5b439c9c1ef99de2dd2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1972328728}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1972328728
 PrefabInstance:
   m_ObjectHideFlags: 0
