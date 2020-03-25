@@ -65,13 +65,13 @@ public class Rocket : MonoBehaviour
             case "Finish":
                 print("Yeah, I know, you won.");
                 state = State.Transcending;
-                SceneManager.LoadScene(1);
+                LoadScene();
                 break;
 
             default:
                 print("Die mf!");
                 state = State.Dying;
-                SceneManager.LoadScene(0);
+                LoadScene();
                 break;
         }
     }
