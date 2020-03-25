@@ -81,11 +81,8 @@ public class Rocket : MonoBehaviour
         lockdown = true;
         if (state is State.Transcending)
         {
-            while(speed.magnitude != 0)
-            {
-
-            }
-            Invoke("NextScene", loadWait);
+           //while(speed.magnitude != 0) { }
+           Invoke("NextScene", loadWait);
         }
         if (state is State.Dying)
         {
