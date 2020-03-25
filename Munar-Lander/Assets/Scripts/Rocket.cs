@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Rocket : MonoBehaviour
 {
-    // todo fix lightning bug
+
     Rigidbody rigidBody;
     AudioSource audioSource;
 
