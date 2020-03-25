@@ -16,9 +16,19 @@ public class Rocket : MonoBehaviour
     [SerializeField] TextMesh totalSpeed;
     [SerializeField] TextMesh headingIndicator;
 
+    enum State { Alive, Dying, Transcending };
+    State state;
+
+    private bool lockdown = false;
+
+    private Vector3 speed;
+
+    [SerializeField] float loadWait = 1f;
+
     // Start is called before the first frame update
     void Start()
     {
+        state = State.Alive;
         rigidBody = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
         xSpeed.text = "";
@@ -37,7 +47,7 @@ public class Rocket : MonoBehaviour
 
     private void StatsUpdate()
     {
-        Vector3 speed = rigidBody.GetRelativePointVelocity(rigidBody.centerOfMass);
+        speed = rigidBody.GetRelativePointVelocity(rigidBody.centerOfMass);
         xSpeed.text = Math.Round(speed.x, 2).ToString();
         ySpeed.text = Math.Round(speed.y, 2).ToString();
         totalSpeed.text = Math.Round(speed.magnitude, 2).ToString();
@@ -50,17 +60,47 @@ public class Rocket : MonoBehaviour
         {
             case "Friendly":
                 print("You may live... For now");
+                state = State.Alive;
                 break;
             case "Finish":
                 print("Yeah, I know, you won.");
+                state = State.Transcending;
                 SceneManager.LoadScene(1);
                 break;
 
             default:
                 print("Die mf!");
+                state = State.Dying;
                 SceneManager.LoadScene(0);
                 break;
         }
+    }
+
+    private void LoadScene()
+    {
+        lockdown = true;
+        if (state is State.Transcending)
+        {
+            while(speed.magnitude != 0)
+            {
+
+            }
+            Invoke("NextScene", loadWait);
+        }
+        if (state is State.Dying)
+        {
+            Invoke("MainMenu", loadWait);
+        }
+    }
+
+    private void NextScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    private void MainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 
     private void Rotate()
@@ -69,14 +109,14 @@ public class Rocket : MonoBehaviour
         if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D)) { }
         else
         {
-            if (Input.GetKey(KeyCode.A))
+            if (Input.GetKey(KeyCode.A) && !lockdown)
             {
                 //rigidBody.freezeRotation = true;
                 transform.Rotate(Vector3.forward * Time.deltaTime * rcs);
                 //print("A");
                 //rigidBody.freezeRotation = false;
             }
-            else if (Input.GetKey(KeyCode.D))
+            else if (Input.GetKey(KeyCode.D) && !lockdown)
             {
                 //rigidBody.freezeRotation = true;
                 transform.Rotate(-Vector3.forward * Time.deltaTime * rcs);
@@ -88,7 +128,7 @@ public class Rocket : MonoBehaviour
 
     private void Thrust()
     {
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.W) && !lockdown)
         {
             float thrustPerFrame = thrust * Time.deltaTime;
             rigidBody.AddRelativeForce(Vector3.up * thrustPerFrame);
