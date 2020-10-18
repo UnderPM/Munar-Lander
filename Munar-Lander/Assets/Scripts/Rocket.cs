@@ -16,6 +16,10 @@ public class Rocket : MonoBehaviour
     [SerializeField] TextMesh totalSpeed;
     [SerializeField] TextMesh headingIndicator;
 
+    [SerializeField] AudioClip mainEngine;
+    [SerializeField] AudioClip success;
+    [SerializeField] AudioClip fail;
+
     enum State { Alive, Dying, Transcending };
     State state;
 
@@ -40,8 +44,8 @@ public class Rocket : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Thrust();
-        Rotate();
+        RespondToThrust();
+        RespondToRotation();
         StatsUpdate();
     }
 
@@ -81,11 +85,15 @@ public class Rocket : MonoBehaviour
         lockdown = true;
         if (state is State.Transcending)
         {
-           //while(speed.magnitude != 0) { }
-           Invoke("NextScene", loadWait);
+            //while(speed.magnitude != 0) { }
+            audioSource.PlayOneShot(success);
+            loadWait = 3.5f;
+            Invoke("NextScene", loadWait);
         }
         if (state is State.Dying)
         {
+            audioSource.PlayOneShot(fail);
+            loadWait = 3.5f;
             Invoke("MainMenu", loadWait);
         }
     }
@@ -100,7 +108,7 @@ public class Rocket : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    private void Rotate()
+    private void RespondToRotation()
     {
         
         if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D)) { }
@@ -123,7 +131,7 @@ public class Rocket : MonoBehaviour
         }
     }
 
-    private void Thrust()
+    private void RespondToThrust()
     {
         if (Input.GetKey(KeyCode.W) && !lockdown)
         {
@@ -131,7 +139,7 @@ public class Rocket : MonoBehaviour
             rigidBody.AddRelativeForce(Vector3.up * thrustPerFrame);
             if (!audioSource.isPlaying)
             {
-                audioSource.Play();
+                audioSource.PlayOneShot(mainEngine);
             }
         }
         if (Input.GetKeyUp(KeyCode.W))

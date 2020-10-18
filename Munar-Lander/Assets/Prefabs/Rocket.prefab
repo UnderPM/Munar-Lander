@@ -243,6 +243,10 @@ MonoBehaviour:
   ySpeed: {fileID: 0}
   totalSpeed: {fileID: 0}
   headingIndicator: {fileID: 0}
+  mainEngine: {fileID: 8300000, guid: 4fe2dee9986b6884b92ea74a4a197ab9, type: 3}
+  success: {fileID: 8300000, guid: 3408ee50381d4274c8b847f4439f3d44, type: 3}
+  fail: {fileID: 8300000, guid: 8edcd0a32486efd40999439d2a13f739, type: 3}
+  loadWait: 1
 --- !u!54 &1640436027067650802
 Rigidbody:
   m_ObjectHideFlags: 0
