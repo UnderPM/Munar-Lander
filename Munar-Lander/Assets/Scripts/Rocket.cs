@@ -20,6 +20,10 @@ public class Rocket : MonoBehaviour
     [SerializeField] AudioClip success;
     [SerializeField] AudioClip fail;
 
+    [SerializeField] ParticleSystem mainEngineParticles;
+    [SerializeField] ParticleSystem successParticles;
+    [SerializeField] ParticleSystem failParticles;
+
     enum State { Alive, Dying, Transcending };
     State state;
 
@@ -87,12 +91,14 @@ public class Rocket : MonoBehaviour
         {
             //while(speed.magnitude != 0) { }
             audioSource.PlayOneShot(success);
+            successParticles.Play();
             loadWait = 3.5f;
             Invoke("NextScene", loadWait);
         }
         if (state is State.Dying)
         {
             audioSource.PlayOneShot(fail);
+            failParticles.Play();
             loadWait = 3.5f;
             Invoke("MainMenu", loadWait);
         }
@@ -140,11 +146,13 @@ public class Rocket : MonoBehaviour
             if (!audioSource.isPlaying)
             {
                 audioSource.PlayOneShot(mainEngine);
+                mainEngineParticles.Play();
             }
         }
         if (Input.GetKeyUp(KeyCode.W))
         {
             audioSource.Stop();
+            mainEngineParticles.Stop();
         }
     }
 }
